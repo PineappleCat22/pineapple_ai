@@ -39,3 +39,7 @@ index = VectorStoreIndex.from_documents(
 # heres the command you run to point to the venv:
 # source .venv/bin/activate
 # i hope it works how i think it does so i can automate it
+
+# addendum to the first three lines of notes:
+# I FIGURED IT OOOOOOOOOOOOOOOOOOUT
+# its pointless but for the sake of portability i will create the modelfiles for both bge and ll2-u, and leave them in.
