@@ -11,7 +11,7 @@ Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
 
 # ollama
 print("Starting base model: Llama 3")
-Settings.llm = Ollama(model="llama3", request_timeout=360.0)
+Settings.llm = Ollama(model="llama3", request_timeout=360.0, base_url="http://localhost:11434")
 
 print("Linking data documents...")
 documents = SimpleDirectoryReader("data").load_data()
@@ -21,7 +21,7 @@ index = VectorStoreIndex.from_documents(
 # IF I CAN REMOVE THIS I SHOULD
 
 print("Starting the query engine...")
-query_engine = index.as_query_engine(streaming=True)
+query_engine = index.as_chat_engine(streaming=True)
 while True:
     response = query_engine.chat(input("Enter a prompt:\n"))
     response.print_response_stream()

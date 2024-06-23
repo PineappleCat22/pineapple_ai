@@ -21,7 +21,7 @@ index = VectorStoreIndex.from_documents(
 # IF I CAN REMOVE THIS I SHOULD
 
 print("Starting the query engine...")
-query_engine = index.as_query_engine(streaming=True)
+query_engine = index.as_chat_engine(streaming=True)
 while True:
     response = query_engine.chat(input("Enter a prompt:\n"))
     response.print_response_stream()
