@@ -6,13 +6,19 @@ documents = SimpleDirectoryReader("data").load_data()
 
 # bge-base embedding model
 Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
+#apparently an embedding model is required. who knew!
 
 # ollama
-Settings.llm = Ollama(model="llama2-uncensored", request_timeout=360.0)
+Settings.llm = Ollama(model="dave4", request_timeout=360.0)
 
 index = VectorStoreIndex.from_documents(
     documents,
 )
+
+query_engine = index.as_query_engine()
+while True:
+	response = query_engine.query(input("Enter a prompt:\n"))
+	print(response)
 
 # hey so idk how to access cloned models so this just uses ollama.
 # i need to figure out how to use modelfiles which point to the model location, i guess.
