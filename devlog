@@ -49,3 +49,9 @@ created new subdir for dave to live in.
 shouldve said a while ago, but i switched to llama 3
 i also made a devlog im not adding dates tho fuck that shit
 THE VENV ON THE PI KEEPS FORGETTING MY MODULES?????????????????????????????
+
+ok as it turns out for what im trying to do, llama index fucking sucks.
+i need to find something to pivot to. going to ask chatgpt but i have expended all available braincells for tonight.
+so TODO: kill llamaindex, pick something else to serve the ai.
+from what chatgpt is spitting to me right now (straight immutable facts) i will need a local model. ollama can still be used for this.
+ollama =/= llamaindex, and might still be of some use to me. i weep however.
