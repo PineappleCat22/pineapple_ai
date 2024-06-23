@@ -1,6 +1,7 @@
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.ollama import Ollama
+from llama_index.core import GPTVectorStoreIndex
 
 print("Initializing Pineapple AI...")
 
@@ -13,11 +14,7 @@ Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
 print("Starting base model: Llama 3")
 Settings.llm = Ollama(model="llama3", request_timeout=360.0, base_url="http://localhost:11434")
 
-print("Linking data documents...")
-documents = SimpleDirectoryReader("data").load_data()
-index = VectorStoreIndex.from_documents(
-    documents,
-)
+index = GPTVectorStoreIndex(service_context=None)
 # IF I CAN REMOVE THIS I SHOULD
 
 print("Starting the query engine...")
