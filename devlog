@@ -55,3 +55,14 @@ i need to find something to pivot to. going to ask chatgpt but i have expended a
 so TODO: kill llamaindex, pick something else to serve the ai.
 from what chatgpt is spitting to me right now (straight immutable facts) i will need a local model. ollama can still be used for this.
 ollama =/= llamaindex, and might still be of some use to me. i weep however.
+
+good morning. a new truckload of braincells arrived today.
+while i was napping i had a thought about llamaindex.
+the reason it doesnt work is because i want to fine-tune an ai based on my discord messages, and that doesn't give me that ability.
+llamaindex is built more for Q&A response, however that might still be of use to me.
+the original plan was to fine tune the model and then hand it a file full of "facts".
+this would exisit in the event that someone asks a question about me so that the ai isnt making up details of my personal life.
+that approach might still work with llamaindex, but theres other problems too.
+in previous test attempts, it seems to ignore me. even when i try to run it like a chat bot it REALLY wants to answer questions.
+in this pursuit it ignores me and asks itself a question. this is clearly not intended behavior
+if i can control this the llamaindex ai might be just what i need. wont work for dave though.
