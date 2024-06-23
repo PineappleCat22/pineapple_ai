@@ -7,7 +7,7 @@ print("Initializing Pineapple AI...")
 # bge-base embedding model
 print("Starting embedding model: BGE-BASE-EN-v1.5")
 Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
-#apparently an embedding model is required. who knew!
+#I CANT FIGURE OUT HOW TO GET THIS OUT OF HERE
 
 # ollama
 print("Starting base model: Llama 3")
