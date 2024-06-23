@@ -24,7 +24,8 @@ print("Starting the query engine...")
 query_engine = index.as_chat_engine(streaming=True)
 while True:
     response = query_engine.chat(input("Enter a prompt:\n"))
-    response.print_response_stream()
+    for token in response.chat_stream:
+        print(token, end="")
 #I TRIED CONFIGURING THIS FOR CHAT. NO GUARANTEES, HAHAHAHAHHAHAHA ;)
 
 # TODO: Query engine while loop doesnt seem to remember itself.
