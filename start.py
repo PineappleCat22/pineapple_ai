@@ -21,11 +21,11 @@ index = VectorStoreIndex.from_documents(
 # IF I CAN REMOVE THIS I SHOULD
 
 print("Starting the query engine...")
-query_engine = index.as_chat_engine(streaming=True)
-while True:
-    response = query_engine.chat(input("Enter a prompt:\n"))
-    for token in response.chat_stream:
-        print(token, end="")
+chat_engine = index.as_chat_engine()
+chat_engine.chat_repl()
+#streaming_response = chat_engine.stream_chat(input("Prompt: \n"))
+#for token in streaming_response.response_gen:
+#    print(token, end="")
 #I TRIED CONFIGURING THIS FOR CHAT. NO GUARANTEES, HAHAHAHAHHAHAHA ;)
 
 # TODO: Query engine while loop doesnt seem to remember itself.
