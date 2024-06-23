@@ -1,0 +1,4 @@
+D.A.V.E. testing ai, used for testing stuff (fine tuning, data reading, models, discord integration) before i have the actual data.
+Dave AI, Very Epic
+based off of Dave Strider from Homestuck mainly because its easy to get ai-compatible system prompts by stealing them from author Andrew Hussie.
+uses llama 3 with a long system prompt to give it some context.

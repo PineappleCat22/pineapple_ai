@@ -10,7 +10,7 @@ Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
 #apparently an embedding model is required. who knew!
 
 # ollama
-print("Starting base model: ###PUT MODEL NAME HERE, DUDE###")
+print("Starting base model: Llama 3")
 Settings.llm = Ollama(model="llama3", request_timeout=360.0)
 
 print("Linking data documents...")
@@ -18,12 +18,18 @@ documents = SimpleDirectoryReader("data").load_data()
 index = VectorStoreIndex.from_documents(
     documents,
 )
+# IF I CAN REMOVE THIS I SHOULD
 
 print("Starting the query engine...")
-query_engine = index.as_query_engine()
+query_engine = index.as_query_engine(streaming=True)
 while True:
-    response = query_engine.query(input("Enter a prompt:\n"))
-    print(response)
+    response = query_engine.chat(input("Enter a prompt:\n"))
+    response.print_response_stream()
+#I TRIED CONFIGURING THIS FOR CHAT. NO GUARANTEES, HAHAHAHAHHAHAHA ;)
+
+# TODO: Query engine while loop doesnt seem to remember itself.
+# TODO: The way the data is implemented does NOT work for fine-tuning, that configuration is for answers to questions.
+# TODO: I DONT KNOW HOW TO FINE TUNE THE THING
 
 # hey so idk how to access cloned models so this just uses ollama.
 # i need to figure out how to use modelfiles which point to the model location, i guess.
@@ -60,3 +66,14 @@ while True:
 # pep8 is a fucking bitch.
 # intellij is a fucking bitch.
 # STOP POLICING MY LANGUAGE
+# THE VENV IS GONE
+# this is my third time installing the packages on my laptop side. FUCK!
+# the venv is entirely missing and i cant get it back. so im using my laptop's environment
+# the venv is back
+# unresolved reference: print
+# WHAT
+# WHAT DO YOU MEAN SDK is not defined for Run Configuration
+# IT WONT WORK
+# WHAT THE FUCK
+# AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+# it works
