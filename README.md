@@ -8,4 +8,5 @@ pip install llama-index-embeddings-huggingface
 ```
 if the pip commands dont work you need to build a virtual environment, you can learn how to do that here: https://askubuntu.com/questions/1465218/pip-error-on-ubuntu-externally-managed-environment-%C3%97-this-environment-is-extern
 
-#TODO: ADD MORE INSTRUCTIONS
+# TODO: ADD MORE INSTRUCTIONS
+# TODO: THIS WHOLE THING IS INVALID!
