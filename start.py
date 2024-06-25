@@ -1,12 +1,12 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-model_name = 'meta-llama/Meta-Llama-3-8B'  # replace with the path to your model
+model_name = 'Meta-Llama-3-8B'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
-system_prompt = ""
+system_prompt = "You are an AI currently speaking to your creator."
+
 # Ensure the model is in evaluation mode
-#uhhh what does that mean
 model.eval()
 
 def query(prompt, max_length=300):
@@ -28,4 +28,6 @@ def chatbot():
         print("Chatbot:", response)
 
 chatbot()
+
+#THIS SCRIPT LAGS THE FUCK OUT OF EVERYTHING. IT USES A SHIT TON OF MEMORY TOO. so be careful.
 
