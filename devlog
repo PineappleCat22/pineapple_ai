@@ -85,3 +85,23 @@ we've reached another roadblock: llama 3 is a ram hog. once my next paycheck com
 shutting down for the night.
 
 payday came early. the money has been transferred and sent, my shit comes in next week.
+
+killed time a little too hard. nothing i can do atm but start the bot framework, so i do that.
+i should also containerize the chatbot code because it shouldnt be in start.py
+ill do that first, since its easy.
+i will say working on two different ais with two different use cases is pretty beneficial to the progress of both.
+i threw dave in the start.py and created some handlers so that you can import it and use it to run meta, pineapple, or dave.
+im going to rename it too so for brevity start.py is now runModel.py.
+start.py will now contain the code to spin up the discord bot and some basic responses.
+just to get the hang of the thing ill make it say "hi!" when you ping it, and a command to add two numbers or some shit
+i might need to create some kind of prompt queue? so it doesnt try running the query code too many times at once.
+thats another interesting thing. im not sure if the ai will add to its prompt and response history between messages.
+theres a lot of unknown here and i cant test it until the RAM gets here. i might also need to write an OoM handler.
+FUCK! ok lets get our ducks in a row
+problems:
+prompt queue? idk if the bot runs the code every time or until it is ready.
+need a way to signify that the bot is thinking. this should be ez.
+chat history is a concern as different servers shouldnt have the same history but the bot should still remember messages.
+for now we have a framework. push and commit
+as of now the /dave/ directory is empty save for the dave data and the explanation.
+im trashing the explanation and the directory will contain the model files for dave in the future.
