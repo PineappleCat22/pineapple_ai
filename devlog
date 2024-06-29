@@ -105,3 +105,11 @@ chat history is a concern as different servers shouldnt have the same history bu
 for now we have a framework. push and commit
 as of now the /dave/ directory is empty save for the dave data and the explanation.
 im trashing the explanation and the directory will contain the model files for dave in the future.
+
+just got back. dont think im awake enough to finish the work here.
+discord.py's documentation is really ass. theres a lot of things nested in other things, not enough code snippets, and not enough succinct descriptions.
+i dont want to chatgpt it but im being pushed here. fuck you discord.
+i dont want to spend hours reading docs just to figure out how to capture an input message.
+gonna test slash commands by making something to add two numbers. basic stuff. no idea how to do it though.
+the bot has a tendency to get rate limited when you harass it too much. dont bully him, okay?
+still not sure how sharding works and all that. need to test. fuk. retiring my brain for now. gn
