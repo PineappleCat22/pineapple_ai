@@ -22,6 +22,6 @@ class MyClient(discord.Client):
 
 
 client = MyClient(intents=intents) #how the fuck does this work
-client.status = discord.Status.idle
-client.activity = discord.Activity(name="drinking jesus juice", type=discord.ActivityType.custom, test="balls balls nuts balls")
+client.status = discord.Status.idle #cool flavor stuff
+client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
