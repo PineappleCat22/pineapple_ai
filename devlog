@@ -115,3 +115,8 @@ the bot has a tendency to get rate limited when you harass it too much. dont bul
 still not sure how sharding works and all that. need to test. fuk. retiring my brain for now. gn
 
 little bit of extra work. mostly just flavor stuff and im also learning how to handle messages (to pass them on to the ai)
+
+still just milling around adding random shit.
+i added some new stuff to the pineapple system prompt
+start.py now has a testmode to switch between normal operation and debug. is this safe? probably not
+stole tokenizer.py to test tokens with testmode.
