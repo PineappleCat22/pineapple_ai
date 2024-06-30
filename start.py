@@ -17,8 +17,8 @@ class MyClient(discord.Client):
             return  # Ignore messages from the bot itself
 
         if self.user.mentioned_in(message):
-            await message.channel.send(message.content)
-            print(message.content)
+            await message.channel.send(message.content.replace("<@437414611369721856>", message.author.mention))
+            print(message.content) # learning how to handle input. change this to support user input.
 
 
 client = MyClient(intents=intents) #how the fuck does this work
