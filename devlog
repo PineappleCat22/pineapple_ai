@@ -113,3 +113,5 @@ i dont want to spend hours reading docs just to figure out how to capture an inp
 gonna test slash commands by making something to add two numbers. basic stuff. no idea how to do it though.
 the bot has a tendency to get rate limited when you harass it too much. dont bully him, okay?
 still not sure how sharding works and all that. need to test. fuk. retiring my brain for now. gn
+
+little bit of extra work. mostly just flavor stuff and im also learning how to handle messages (to pass them on to the ai)
