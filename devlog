@@ -127,3 +127,9 @@ but we're 42% through the memtest with no fails, so thats cool. this fucker is c
 75 degrees c but still moving fuck yeah
 it hit 80. AND ITS STILL WORKING BABYEEE. SOUNDS LIKE A JET ENGINE
 i wrote a message handler def to automatically flag >2000 messages, and also tried to reduce the number of awaits.
+
+...so uh, the ai is taking forever. and while waiting i found this: https://github.com/ollama/ollama-python
+which was exactly what i was looking for when i used transformers
+god fuckign damn it
+THE TRANSFORMERS AI FRAME WORK IS FUCKING BRAIN DEAD. IT SCREAMED AT ME AND DIED. COCK
+im saving all the old code in runModelOLD.py because im too stubborn to delete it all. fuck

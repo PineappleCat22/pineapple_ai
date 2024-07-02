@@ -10,6 +10,7 @@ with open('botToken') as f:
 testmode = 1
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
+#test mode 2: test the typing feature. thats it.
 
 intents = discord.Intents.default()
 intents.message_content = True #only good intentions
