@@ -1,5 +1,7 @@
 import ollama
 
+messages = []
+
 def query(prompt, max_length=500, systemPrompt="DEFAULT", modelName='llama3'):
     #look ma, i can write documentation!
     """
@@ -31,7 +33,37 @@ def query(prompt, max_length=500, systemPrompt="DEFAULT", modelName='llama3'):
 
     #prompt stage
     prompt = f"{systemPrompt}\n PineappleCat22 says: {prompt}\nYou respond:"
-    response = ollama.chat(model=modelName, messages=[{'role': 'user', 'content': prompt},])
+    def send(chat):
+        messages.append(
+            {
+                'role': 'user',
+                'content': chat,
+            }
+        )
+        stream = ollama.chat(model=modelName, messages=messages)
+
+        response = ""
+        for chunk in stream:
+            part = chunk['message']['content']
+            print(part, end='', flush=True)
+            response = response + part
+
+        messages.append(
+            {
+                'role': 'assistant',
+                'content': response,
+            }
+        )
+
+        print("")
+
+    while True:
+        chat = input(">>> ")
+
+        if chat == "/exit":
+            break
+        elif len(chat) > 0:
+            send(chat)
     return response['message']['content']
 
 def debug():
