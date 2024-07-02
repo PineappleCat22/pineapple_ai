@@ -28,14 +28,8 @@ def query(prompt, max_length=500, systemPrompt="You are an AI currently speaking
 
     #prompt stage
     prompt = f"{systemPrompt}\n{prompt}\nYou respond:"
-    response = ollama.chat(model=modelName, messages=[
-        {
-            'role': 'user',
-            'content': prompt,
-        },
-    ])
-    print(response['message']['content'])
-    return response
+    response = ollama.chat(model=modelName, messages=[{'role': 'user', 'content': prompt},])
+    return response['message']['content']
 
 def debug():
     print("runModel exists hooray")
