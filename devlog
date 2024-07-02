@@ -120,3 +120,10 @@ still just milling around adding random shit.
 i added some new stuff to the pineapple system prompt
 start.py now has a testmode to switch between normal operation and debug. is this safe? probably not
 stole tokenizer.py to test tokens with testmode.
+
+the ram finally arrived, so thats cool. im realizing that i got cheap ram and maybe it was a bad idea.
+also the bios gave a warning that the psu wouldnt support it.
+but we're 42% through the memtest with no fails, so thats cool. this fucker is chugging along. it could be the ecc modules putting in work or something
+75 degrees c but still moving fuck yeah
+it hit 80. AND ITS STILL WORKING BABYEEE. SOUNDS LIKE A JET ENGINE
+i wrote a message handler def to automatically flag >2000 messages, and also tried to reduce the number of awaits.
