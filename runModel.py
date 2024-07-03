@@ -2,7 +2,7 @@ import ollama
 
 messages = []
 
-def query(prompt, max_length=500, systemPrompt="DEFAULT", modelName='llama3'):
+def query(prompt, systemPrompt="DEFAULT", modelName='llama3'):
     #look ma, i can write documentation!
     """
     initialize and query a specified ai model. probably put this in a repl. also handles default system prompts on its own based on modelname, but specifying one overrides it.\n
@@ -11,7 +11,6 @@ def query(prompt, max_length=500, systemPrompt="DEFAULT", modelName='llama3'):
     Pineapple-AI-Vwhatever - fine tuned model to mimic behaviors based on the dev's discord messages. (NOT IMPLEMENTED)\n
     DAVE-Vwhatever - fine tuned model to mimic behaviors based on dialog from a Homestuck character. (NOT IMPLEMENTED)
     :param prompt: input prompt.
-    :param max_length: (optional) num of tokens accepted.
     :param systemPrompt: (optional) system prompt.
     :param modelName: (optional) ai model name, defaults to Meta-Llama-3-8B.
     :return: ai response as a string
@@ -33,37 +32,9 @@ def query(prompt, max_length=500, systemPrompt="DEFAULT", modelName='llama3'):
 
     #prompt stage
     prompt = f"{systemPrompt}\n PineappleCat22 says: {prompt}\nYou respond:"
-    def send(chat):
-        messages.append(
-            {
-                'role': 'user',
-                'content': chat,
-            }
-        )
-        stream = ollama.chat(model=modelName, messages=messages)
-
-        response = ""
-        for chunk in stream:
-            part = chunk['message']['content']
-            print(part, end='', flush=True)
-            response = response + part
-
-        messages.append(
-            {
-                'role': 'assistant',
-                'content': response,
-            }
-        )
-
-        print("")
-
-    while True:
-        chat = input(">>> ")
-
-        if chat == "/exit":
-            break
-        elif len(chat) > 0:
-            send(chat)
+    messages.append([{'role': 'user', 'content': prompt}])
+    response = ollama.chat(model=modelName, messages=messages)
+    messages.append([{'role': 'assistant', 'content': response}])
     return response['message']['content']
 
 def debug():
@@ -76,5 +47,6 @@ if __name__ == "__main__":
         if user_input.lower() == 'exit':
             print("Chatbot: Goodbye!")
             break
-        responsex = query(user_input)
-        print("bot:", responsex) #haha sex
+        RSP = query(user_input)
+        print("bot:", RSP) #haha sex
+        print(messages)
