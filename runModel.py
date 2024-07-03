@@ -34,7 +34,7 @@ def query(prompt, systemPrompt="DEFAULT", modelName='llama3'):
     prompt = f"{systemPrompt}\n PineappleCat22 says: {prompt}\nYou respond:"
     messages.append({'role': 'user', 'content': prompt},)
     response = ollama.chat(model=modelName, messages=messages)
-    messages.append({'role': 'assistant', 'content': response},)
+    messages.append({'role': 'assistant', 'content': response['message']['content']},)
     return response['message']['content']
 
 def debug():
