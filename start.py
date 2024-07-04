@@ -5,7 +5,7 @@ import datetime as time
 import traceback
 
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
-with open('botToken') as f:
+with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
 testmode = 0
 #test mode 0: normal usage
