@@ -48,7 +48,7 @@ class Tokenizer:
 
     pat_str = r"(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"  # noqa: E501
 
-    def __init__(self, model_path="Meta-Llama-3-8B/original/tokenizer.model"):
+    def __init__(self, model_path="/home/pineapple/pineapple_ai/Meta-Llama-3-8B/original/tokenizer.model"):
         """
         Initializes the Tokenizer with a Tiktoken model.
 
