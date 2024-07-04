@@ -8,10 +8,8 @@ def query(prompt, modelName='llama3'):
     initialize and query a specified ai model. probably put this in a repl. also handles default system prompts on its own based on modelname, but specifying one overrides it.\n
     available models:\n
     llama3 - meta's standard llama 3 model\n
-    Pineapple-AI-Vwhatever - fine tuned model to mimic behaviors based on the dev's discord messages. (NOT IMPLEMENTED)\n
+    Pineapple-AI-Vwhatever - fine tuned model to mimic behaviors based on the dev's discord messages.\n
     DAVE-Vwhatever - fine tuned model to mimic behaviors based on dialog from a Homestuck character. (NOT IMPLEMENTED)
-    :param prompt: input prompt.
-    :param systemPrompt: (optional) system prompt.
     :param modelName: (optional) ai model name, defaults to Meta-Llama-3-8B.
     :return: ai response as a string
     """

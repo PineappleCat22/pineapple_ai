@@ -58,7 +58,8 @@ class MyClient(discord.Client):
             elif testmode == 0:
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
-                    await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.0")) #todo: improve this later
+                    async with message.channel.typing():
+                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.1")) #todo: improve this later
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
