@@ -67,7 +67,8 @@ class MyClient(discord.Client):
                         await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
                     async with message.channel.typing():
-                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2"))
+                        response = model.query(messageStr, modelName="pineapple-ai-v1.2")
+                        await sendMsg(response)
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
@@ -79,10 +80,9 @@ class MyClient(discord.Client):
                     testmode)
                 quit() #this throws a lot of errors. but it accomplishes what it needs to.
 
-#i dont know why all the awaits are here, but it fucking explodes if they arent there.
 #this code is so bad it would probably be a severe liability if it didnt run a silly little bot.
 
-client = MyClient(intents=intents) #how the fuck does this work
-client.status = discord.Status.idle #cool flavor stuff
+client = MyClient(intents=intents)
+client.status = discord.Status.idle
 client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
