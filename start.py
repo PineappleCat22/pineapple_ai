@@ -7,7 +7,7 @@ import traceback
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
 with open('botToken') as f:
     TOKEN = f.readline()
-testmode = 1
+testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 #test mode 2: test the typing feature. thats it.
@@ -58,7 +58,7 @@ class MyClient(discord.Client):
             elif testmode == 0:
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
-                    await sendMsg(model.query(messageStr)) #todo: improve this later
+                    await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.0")) #todo: improve this later
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
