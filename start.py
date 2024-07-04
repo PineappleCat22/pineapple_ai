@@ -4,6 +4,7 @@ import tokenizer
 import datetime as time
 import traceback
 
+firstMessage = True
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
@@ -26,6 +27,8 @@ class MyClient(discord.Client):
         print(e)
 
     async def on_message(self, message):
+        global firstMessage
+
         async def sendMsg(*msgs):
             for msg in msgs:
                 try:
@@ -43,6 +46,7 @@ class MyClient(discord.Client):
             return  # Ignore messages from the bot itself
 
         if self.user.mentioned_in(message):
+
             if testmode == 1:
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
@@ -55,15 +59,20 @@ class MyClient(discord.Client):
                     await sendMsg(
                         "aw fuck. message parse error.",
                         e)
+
             elif testmode == 0:
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
+                    if firstMessage:
+                        await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
+                        firstMessage = False
                     async with message.channel.typing():
                         await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.1")) #todo: improve this later
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
                         traceback.format_exception(e))
+
             else:
                 await sendMsg(
                     "testmode error. what the fuck is going on. im gonna kill myself.",
