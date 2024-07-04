@@ -66,9 +66,8 @@ class MyClient(discord.Client):
                     if firstMessage:
                         await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
-                    async with message.channel.typing():
-                        response = model.query(messageStr, modelName="pineapple-ai-v1.2")
-                        await sendMsg(response)
+                    async with sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")):
+                        await message.channel.typing()
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
