@@ -70,7 +70,7 @@ class MyClient(discord.Client):
                         await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")) #okay. this works, but i dont know why. i wont touch it
                 except Exception as e:
                     await sendMsg(
-                        "aw fuck. ai query error.",
+                        "aw fuck. ai query error." ,
                         traceback.format_exception(e))
 
             else:
