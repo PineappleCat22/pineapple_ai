@@ -2,7 +2,7 @@ import ollama
 
 messages = []
 
-def query(prompt, modelName='llama3'):
+async def query(prompt, modelName='llama3'):
     #look ma, i can write documentation!
     """
     initialize and query a specified ai model. probably put this in a repl. also handles default system prompts on its own based on modelname, but specifying one overrides it.\n
@@ -15,12 +15,16 @@ def query(prompt, modelName='llama3'):
     :return: ai response as a string
     """
 
+    async def realQuery():
+        #this is hacky and stupid.
+        return await ollama.chat(model=modelName, messages=messages)['message']['content']
+
     #prompt stage
     prompt = f"PineappleCat22 says: {prompt}\nYou respond:"
     messages.append({'role': 'user', 'content': prompt},)
-    response = ollama.chat(model=modelName, messages=messages)
-    messages.append({'role': 'assistant', 'content': response['message']['content']},)
-    return response['message']['content']
+    response = realQuery()
+    messages.append({'role': 'assistant', 'content': response},)
+    return response
 
 def debug():
     print("runModel exists hooray")
