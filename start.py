@@ -67,7 +67,7 @@ class MyClient(discord.Client):
                         await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
                     async with message.channel.typing():
-                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2"))
+                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")) #okay. this works, but i dont know why. i wont touch it
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
@@ -86,5 +86,4 @@ client.status = discord.Status.idle
 client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
 
-#TODO: line 70 is causing heartbeat issues
 #TODO: add more shit to the system prompt?
