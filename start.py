@@ -66,8 +66,8 @@ class MyClient(discord.Client):
                     if firstMessage:
                         await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
-                    async with sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")):
-                        await message.channel.typing()
+                    async with message.channel.typing():
+                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2"))
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error.",
@@ -85,3 +85,6 @@ client = MyClient(intents=intents)
 client.status = discord.Status.idle
 client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
+
+#TODO: line 70 is causing heartbeat issues
+#TODO: add more shit to the system prompt?
