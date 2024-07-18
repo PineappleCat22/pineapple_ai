@@ -11,7 +11,7 @@ firstMessage = True
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 1
+testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 executor = ThreadPoolExecutor() #UHHH IDK WHAT THIS DOES
