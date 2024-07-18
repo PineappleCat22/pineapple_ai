@@ -50,7 +50,7 @@ class MyClient(discord.Client):
                     print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
                     print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
                     return
-                else: message.reply(msg)
+                else: await message.reply(msg)
 
 
         if message.author == self.user:
