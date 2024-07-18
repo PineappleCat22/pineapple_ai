@@ -46,11 +46,11 @@ class MyClient(discord.Client):
             for msg in msgs:
                 msg = str(msg)
                 if len(msg) > 2000:
-                    await message.channel.reply(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
+                    await message.reply(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
                     print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
                     print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
                     return
-                else: message.channel.reply(msg)
+                else: message.reply(msg)
 
 
         if message.author == self.user:
