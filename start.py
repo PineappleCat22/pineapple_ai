@@ -82,7 +82,7 @@ class MyClient(discord.Client):
                         "aw fuck. ai query error.",
                         ''.join(traceback.format_exception(e)))
 
-        else:
+            else:
                 await sendMsg(
                     "testmode error. what the fuck is going on. im gonna kill myself.",
                     testmode)
