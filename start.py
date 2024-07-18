@@ -78,11 +78,8 @@ class MyClient(discord.Client):
                         await replyMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
                     async with message.channel.typing():
-                        print("IM GONNA TRY TO QUERY THE AI.")
                         loop = asyncio.get_event_loop()
                         AIMsg = await loop.run_in_executor(executor, model.query, messageStr, "pineapple-ai-v1.2")
-                        print(f"THE AI SAYS: {AIMsg}")
-                        print("NOW WE'RE GONNA SEND THE MESSAGE")
                         await replyMsg(AIMsg)
                 except Exception as e:
                     await replyMsg(
