@@ -139,3 +139,4 @@ only thing i need to do is adjust some system prompt stuff and try and get more 
 bot end is pretty much done.
 added some friends to bot test hell to help test the ai, nom gaslit it and seba immediately prompt engineered it
 theres some relevant TODOs in start.py to help adjust its personality, ill get to those later.
+i might be able to increase its creativity by adding more temperature? i need to experiment with that.
