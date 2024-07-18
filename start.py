@@ -3,6 +3,9 @@ import runModel as model
 import tokenizer
 import datetime as time
 import traceback
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
 
 firstMessage = True
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
@@ -11,7 +14,7 @@ with open('/home/pineapple/pineapple_ai/botToken') as f:
 testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
-#test mode 2: test the typing feature. thats it.
+executor = ThreadPoolExecutor() #UHHH IDK WHAT THIS DOES
 
 intents = discord.Intents.default()
 intents.message_content = True #only good intentions
@@ -68,16 +71,17 @@ class MyClient(discord.Client):
                         firstMessage = False
                     async with message.channel.typing():
                         print("IM GONNA TRY TO QUERY THE AI.")
-                        AIMsg = await model.query(messageStr, modelName="pineapple-ai-v1.2")
-                        print(f"fTHE AI SAYS: {AIMsg}")
+                        loop = asyncio.get_event_loop()
+                        AIMsg = await loop.run_in_executor(executor, model.query, messageStr, "pineapple-ai-v1.2")
+                        print(f"THE AI SAYS: {AIMsg}")
                         print("NOW WE'RE GONNA SEND THE MESSAGE")
                         await sendMsg(AIMsg)
                 except Exception as e:
                     await sendMsg(
-                        "aw fuck. ai query error." ,
-                        traceback.format_exception(e))
+                        "aw fuck. ai query error.",
+                        ''.join(traceback.format_exception(e)))
 
-            else:
+        else:
                 await sendMsg(
                     "testmode error. what the fuck is going on. im gonna kill myself.",
                     testmode)

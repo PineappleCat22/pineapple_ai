@@ -2,7 +2,7 @@ import ollama
 
 messages = []
 
-async def query(prompt, modelName='llama3', sender='user'):
+def query(prompt, modelName='llama3'):
     #look ma, i can write documentation!
     """
     initialize and query a specified ai model. probably put this in a repl. also handles default system prompts on its own based on modelname, but specifying one overrides it.\n
@@ -23,12 +23,12 @@ RuntimeWarning: Enable tracemalloc to get the object allocation traceback"""
 
     #prompt stage
 
-    prompt = f"{sender} says: {prompt}\nYou respond:"
+    prompt = f"{prompt}\nYou respond:"
     print(f"AI PROMPT SENT: {prompt}")
     print("NOW WE APPEND THAT TO THE messages STACK")
     messages.append({'role': 'user', 'content': prompt},)
     print("OK QUERYING THE AI NOW")
-    response = await ollama.chat(model=modelName, messages=messages)['message']['content']
+    response = ollama.chat(model=modelName, messages=messages)['message']['content']
     print(f"AI RESPONDED WITH {response}")
     print("ADDING RESPONSE TO MESSAGE STACK")
     messages.append({'role': 'assistant', 'content': response},)
