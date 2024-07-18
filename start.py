@@ -11,7 +11,7 @@ firstMessage = True
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 0
+testmode = 1
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 executor = ThreadPoolExecutor() #UHHH IDK WHAT THIS DOES
@@ -35,15 +35,22 @@ class MyClient(discord.Client):
         async def sendMsg(*msgs):
             for msg in msgs:
                 msg = str(msg)
-                try:
-                    if len(msg) > 2000:
-                        await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
-                        print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
-                        print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
-                    else:
-                        await message.channel.send(msg)
-                except Exception as e2:
-                    print(f"SOMETHING EVEN WORSE HAPPENED WHILE SENDING A MESSAGE.\n{traceback.format_exception(e2)}")
+                if len(msg) > 2000:
+                    await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
+                    print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
+                    print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
+                    return
+                else: message.channel.send(msg)
+
+        async def replyMsg(*msgs):
+            for msg in msgs:
+                msg = str(msg)
+                if len(msg) > 2000:
+                    await message.channel.reply(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
+                    print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
+                    print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
+                    return
+                else: message.channel.reply(msg)
 
 
         if message.author == self.user:
@@ -55,12 +62,12 @@ class MyClient(discord.Client):
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
                     messageEncoded = tkn.encode(s=messageStr, eos=False, bos=False)
-                    await sendMsg(
+                    await replyMsg(
                         messageStr,
                         f"tokens: {messageEncoded}",
                         f"token length: {len(messageEncoded)}")
                 except Exception as e:
-                    await sendMsg(
+                    await replyMsg(
                         "aw fuck. message parse error.",
                         e)
 
@@ -68,7 +75,7 @@ class MyClient(discord.Client):
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
                     if firstMessage:
-                        await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
+                        await replyMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
                     async with message.channel.typing():
                         print("IM GONNA TRY TO QUERY THE AI.")
@@ -76,9 +83,9 @@ class MyClient(discord.Client):
                         AIMsg = await loop.run_in_executor(executor, model.query, messageStr, "pineapple-ai-v1.2")
                         print(f"THE AI SAYS: {AIMsg}")
                         print("NOW WE'RE GONNA SEND THE MESSAGE")
-                        await sendMsg(AIMsg)
+                        await replyMsg(AIMsg)
                 except Exception as e:
-                    await sendMsg(
+                    await replyMsg(
                         "aw fuck. ai query error.",
                         ''.join(traceback.format_exception(e)))
 
@@ -96,3 +103,7 @@ client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
 
 #TODO: add more shit to the system prompt?
+#TODO: ping user that it is responding to, reply if possible.
+#TODO: tell it to omit unnecessary details.
+#TODO: tell it the distinction between asexual and aromantic?
+#TODO: ai gets repetetive sometimes?
