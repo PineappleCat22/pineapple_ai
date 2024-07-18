@@ -24,7 +24,7 @@ RuntimeWarning: Enable tracemalloc to get the object allocation traceback"""
     #prompt stage
     prompt = f"PineappleCat22 says: {prompt}\nYou respond:"
     messages.append({'role': 'user', 'content': prompt},)
-    response = ollama.chat(model=modelName, messages=messages)['message']['content']
+    response = await ollama.chat(model=modelName, messages=messages)['message']['content']
     messages.append({'role': 'assistant', 'content': response},)
     return response
 
