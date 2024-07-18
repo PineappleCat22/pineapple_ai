@@ -67,7 +67,11 @@ class MyClient(discord.Client):
                         await sendMsg("```hey the bot's first message takes some time. i promise its working! -pineapple```")
                         firstMessage = False
                     async with message.channel.typing():
-                        await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")) #okay. this works, but i dont know why. i wont touch it
+                        print("IM GONNA TRY TO QUERY THE AI.")
+                        AIMsg = await model.query(messageStr, modelName="pineapple-ai-v1.2")
+                        print(f"fTHE AI SAYS: {AIMsg}")
+                        print("NOW WE'RE GONNA SEND THE MESSAGE")
+                        await sendMsg(AIMsg)
                 except Exception as e:
                     await sendMsg(
                         "aw fuck. ai query error." ,
