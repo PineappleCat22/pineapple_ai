@@ -24,7 +24,6 @@ class MyClient(discord.Client):
         async def on_ready(self):
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
-            model.debug()
     except Exception as e:
         print("Something went horribly wrong while initializing.")
         print(e)
@@ -100,7 +99,6 @@ client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
 
 #TODO: add more shit to the system prompt?
-#TODO: ping user that it is responding to, reply if possible.
 #TODO: tell it to omit unnecessary details.
 #TODO: tell it the distinction between asexual and aromantic?
 #TODO: ai gets repetetive sometimes?

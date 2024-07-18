@@ -14,23 +14,12 @@ def query(prompt, modelName='llama3'):
     :param modelName: (optional) ai model name, defaults to Meta-Llama-3-8B.
     :return: ai response as a string
     """
-    """['Traceback (most recent call last):\n', '  File "/home/pineapple/pineapple_ai/start.py", line 35, in sendMsg\n    if len(msg) > 2000:\n       ^^^^^^^^\n', "TypeError: object of type 'coroutine' has no len()\n"]
-/home/pineapple/pineapple_ai/start.py:70: RuntimeWarning: coroutine 'query' was never awaited
-  await sendMsg(model.query(messageStr, modelName="pineapple-ai-v1.2")) #okay. this works, but i dont know why. i wont touch it
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback"""
-    # I DUNNO WHATS CAUSING THIS
-    # I DONT HAVE ENOUGH THINKING ABILITYT TO FIX IT.
-
-    #prompt stage
 
     prompt = f"{prompt}\nYou respond:"
     messages.append({'role': 'user', 'content': prompt},)
     response = ollama.chat(model=modelName, messages=messages)['message']['content']
     messages.append({'role': 'assistant', 'content': response},)
     return response
-
-def debug():
-    print("runModel exists hooray")
 
 if __name__ == "__main__":
     print("TEST INSTANCE INITIALIZED. 'exit' TO QUIT. RUNNING MODEL IS META-LLAMA-3-8B")

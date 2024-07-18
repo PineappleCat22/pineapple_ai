@@ -133,3 +133,9 @@ which was exactly what i was looking for when i used transformers
 god fuckign damn it
 THE TRANSFORMERS AI FRAME WORK IS FUCKING BRAIN DEAD. IT SCREAMED AT ME AND DIED. COCK
 im saving all the old code in runModelOLD.py because im too stubborn to delete it all. fuck
+
+its been a while. i have it pretty much settled now.
+only thing i need to do is adjust some system prompt stuff and try and get more response time.
+bot end is pretty much done.
+added some friends to bot test hell to help test the ai, nom gaslit it and seba immediately prompt engineered it
+theres some relevant TODOs in start.py to help adjust its personality, ill get to those later.
