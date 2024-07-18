@@ -34,6 +34,7 @@ class MyClient(discord.Client):
 
         async def sendMsg(*msgs):
             for msg in msgs:
+                str(msg)
                 try:
                     if len(msg) > 2000:
                         await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
