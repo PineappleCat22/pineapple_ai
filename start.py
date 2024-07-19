@@ -102,3 +102,4 @@ client.run(TOKEN)
 #TODO: tell it to omit unnecessary details.
 #TODO: tell it the distinction between asexual and aromantic?
 #TODO: ai gets repetetive sometimes?
+#TODO: ai determine its own status as a way to warm it up.
