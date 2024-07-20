@@ -22,6 +22,7 @@ intents.message_content = True #only good intentions
 class MyClient(discord.Client):
     try:
         async def on_ready(self):
+            client.activity = discord.CustomActivity("activity change test") #WHY DOES THIS WORK
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
     except Exception as e:
@@ -97,7 +98,7 @@ client = MyClient(intents=intents)
 client.status = discord.Status.idle
 client.activity = discord.CustomActivity("BOOTING UP...")
 client.run(TOKEN)
-client.activity = discord.CustomActivity("activity change test")
+
 
 #TODO: add more shit to the system prompt?
 #TODO: tell it to omit unnecessary details.
