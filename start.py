@@ -15,13 +15,14 @@ testmode = 0
 executor = ThreadPoolExecutor()
 intents = discord.Intents.default()
 intents.message_content = True
+modelName = "pineapple-ai-v1.2"
 
 class MyClient(discord.Client):
     try:
         async def on_ready(self):
             #technically you shouldnt do any of this here
             def query_ai_for_status():
-                return model.query("Describe what you are doing in ten words or less.", modelName="pineapple-ai-v1.2")
+                return model.query("Describe what you are doing in ten words or less.", modelName)
             loop = asyncio.get_event_loop()
             status_message = await loop.run_in_executor(executor, query_ai_for_status)
             await self.change_presence(status=discord.Status.idle, activity=discord.CustomActivity(status_message))
@@ -76,7 +77,7 @@ class MyClient(discord.Client):
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
                     async with message.channel.typing():
                         loop = asyncio.get_event_loop()
-                        AIMsg = await loop.run_in_executor(executor, model.query, messageStr, "pineapple-ai-v1.2")
+                        AIMsg = await loop.run_in_executor(executor, model.query, messageStr, modelName)
                         await replyMsg(AIMsg)
                 except Exception as e:
                     await replyMsg(
