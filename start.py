@@ -11,7 +11,7 @@ firstMessage = True
 tkn = tokenizer.Tokenizer() #hey i dont know why this is necessary
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 0
+testmode = 1
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 executor = ThreadPoolExecutor() #UHHH IDK WHAT THIS DOES
@@ -20,6 +20,8 @@ intents = discord.Intents.default()
 intents.message_content = True #only good intentions
 
 class MyClient(discord.Client):
+    discord.Client.activity = discord.CustomActivity("BOOTING UP...")
+
     try:
         async def on_ready(self):
             print(f'{self.user} initialized successfully')
@@ -95,7 +97,6 @@ class MyClient(discord.Client):
 
 client = MyClient(intents=intents)
 client.status = discord.Status.idle
-client.activity = discord.CustomActivity("coding an ai duplicate of myself")
 client.run(TOKEN)
 
 #TODO: add more shit to the system prompt?
