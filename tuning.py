@@ -2,14 +2,12 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingA
 import torch
 
 # Load the pre-trained model and tokenizer
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_name = '/home/pineapple/pineapple_ai/Meta-Llama-3-8B'
 data = "/home/pineapple/pineapple_ai/dave/data/sample.txt"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
 
-# Ensure mixed precision if using
-torch.cuda.set_per_process_memory_fraction(0.90)  # Use only 90% of available GPU memory
-torch.backends.cudnn.benchmark = True
 model.half()  # Use FP16 precision
 
 # Load the text data
