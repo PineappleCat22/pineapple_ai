@@ -22,7 +22,7 @@ intents.message_content = True #only good intentions
 class MyClient(discord.Client):
     try:
         async def on_ready(self):
-            client.activity = discord.CustomActivity("activity change test") #WHY DOES THIS WORK
+            discord.Client.activity = discord.CustomActivity("activity change test") #WHY DOES THIS WORK
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
     except Exception as e:
