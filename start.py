@@ -22,6 +22,7 @@ intents.message_content = True #only good intentions
 class MyClient(discord.Client):
     try:
         async def on_ready(self):
+            await client.change_presence(status=discord.Status.idle, activity=discord.CustomActivity("activity change test"))
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
     except Exception as e:
@@ -29,7 +30,6 @@ class MyClient(discord.Client):
         print(e)
 
     async def on_message(self, message):
-        discord.Client.activity = discord.CustomActivity("activity change test")
         global firstMessage
 
         async def sendMsg(*msgs):
