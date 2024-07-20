@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 tkn = tokenizer.Tokenizer()
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 1
+testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 executor = ThreadPoolExecutor()
@@ -54,7 +54,6 @@ class MyClient(discord.Client):
                     return
                 else: await message.reply(msg)
 
-
         if message.author == self.user:
             return  # Ignore messages from the bot itself
 
@@ -90,13 +89,10 @@ class MyClient(discord.Client):
                     testmode)
                 quit() #this throws a lot of errors. but it accomplishes what it needs to.
 
-#this code is so bad it would probably be a severe liability if it didnt run a silly little bot.
-
 client = MyClient(intents=intents)
 client.status = discord.Status.idle
 client.activity = discord.CustomActivity("BOOTING UP...")
 client.run(TOKEN)
-
 
 #TODO: add more shit to the system prompt?
 #TODO: tell it to omit unnecessary details.
