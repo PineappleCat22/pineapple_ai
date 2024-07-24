@@ -1,10 +1,11 @@
 import discord
 import runModel as model
 import tokenizer
-import datetime as time
+from datetime import datetime
 import traceback
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+import time
 
 tkn = tokenizer.Tokenizer()
 with open('/home/pineapple/pineapple_ai/botToken') as f:
@@ -12,6 +13,7 @@ with open('/home/pineapple/pineapple_ai/botToken') as f:
 testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
+#test mode 2: prints ai response time after message.
 executor = ThreadPoolExecutor()
 intents = discord.Intents.default()
 intents.message_content = True
@@ -39,9 +41,9 @@ class MyClient(discord.Client):
             for msg in msgs:
                 msg = str(msg)
                 if len(msg) > 2000:
-                    await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
+                    await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {datetime.now()}")
                     print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
-                    print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
+                    print(f"message: {msg}\n length: {len(msg)}\n time: {datetime.now()}")
                     return
                 else: message.channel.send(msg)
 
@@ -49,9 +51,9 @@ class MyClient(discord.Client):
             for msg in msgs:
                 msg = str(msg)
                 if len(msg) > 2000:
-                    await message.reply(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {time.datetime.now()}")
+                    await message.reply(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {datetime.now()}")
                     print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
-                    print(f"message: {msg}\n length: {len(msg)}\n time: {time.datetime.now()}")
+                    print(f"message: {msg}\n length: {len(msg)}\n time: {datetime.now()}")
                     return
                 else: await message.reply(msg)
 
@@ -59,7 +61,22 @@ class MyClient(discord.Client):
             return  # Ignore messages from the bot itself
 
         if self.user.mentioned_in(message):
-            if testmode == 1:
+            if testmode == 2:
+                try:
+                    messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
+                    start = time.time()
+                    async with message.channel.typing():
+                        loop = asyncio.get_event_loop()
+                        AIMsg = await loop.run_in_executor(executor, model.query, messageStr, modelName)
+                        await replyMsg(AIMsg)
+                    end = time.time()
+                    await replyMsg(f"Elapsed time: {time.strftime('%H:%M:%S', time.gmtime(end - start))}")
+                except Exception as e:
+                    await replyMsg(
+                        "aw fuck. ai query error.",
+                        ''.join(traceback.format_exception(e)))
+
+            elif testmode == 1:
                 try:
                     messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
                     messageEncoded = tkn.encode(s=messageStr, eos=False, bos=False)

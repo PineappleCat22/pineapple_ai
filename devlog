@@ -145,6 +145,8 @@ ai sets its own status now. cool. everything is set up and i have a training scr
 came to a halt in the middle of installing ROCm so that i could train it on my AMD gpus.
 getting an error: cannot find name for group ID 1000
 gonna kick back for now. no idea how to fix that.
-ai model updated to v1.5, temperature set to 50, minor changes to the system prompt.
+ai model updated to v1.4, temperature set to 50, minor changes to the system prompt.
 TECHNICALLY a temperature of 50 shouldnt be logical, but it seems to work for now, aside from the ai making up its own slang occasionally.
 whatever.
+
+added testmode 2 so i can view ai response time.
