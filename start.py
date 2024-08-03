@@ -10,7 +10,7 @@ import time
 tkn = tokenizer.Tokenizer()
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 1
+testmode = 2
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 #test mode 2: prints ai response time after message.
@@ -63,7 +63,7 @@ class MyClient(discord.Client):
         if self.user.mentioned_in(message):
             if testmode == 2:
                 try:
-                    messageStr = message.content.replace("<@437414611369721856>", "{message.author.name} says:")
+                    messageStr = f"{message.author.name} says: " + message.content.replace("<@437414611369721856>", "").strip()
                     start = time.time()
                     async with message.channel.typing():
                         loop = asyncio.get_event_loop()
@@ -91,7 +91,7 @@ class MyClient(discord.Client):
 
             elif testmode == 0:
                 try:
-                    messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
+                    messageStr = f"{message.author.name} says: " + message.content.replace("<@437414611369721856>", "").strip()
                     async with message.channel.typing():
                         loop = asyncio.get_event_loop()
                         AIMsg = await loop.run_in_executor(executor, model.query, messageStr, modelName)
