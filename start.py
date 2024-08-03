@@ -78,7 +78,7 @@ class MyClient(discord.Client):
 
             elif testmode == 1:
                 try:
-                    messageStr = f"{message.author.name} says: " + message.content.replace("<@437414611369721856>", "")
+                    messageStr = f"{message.author.name} says: " + message.content.replace("<@437414611369721856>", "").strip()
                     messageEncoded = tkn.encode(s=messageStr, eos=False, bos=False)
                     await replyMsg(
                         messageStr,
