@@ -10,7 +10,7 @@ import time
 tkn = tokenizer.Tokenizer()
 with open('/home/pineapple/pineapple_ai/botToken') as f:
     TOKEN = f.readline()
-testmode = 2
+testmode = 0
 #test mode 0: normal usage
 #test mode 1: ai disabled, bot returns the model input, tokens, and token length.
 #test mode 2: prints ai response time after message.
