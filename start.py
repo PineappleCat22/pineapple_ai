@@ -63,7 +63,7 @@ class MyClient(discord.Client):
         if self.user.mentioned_in(message):
             if testmode == 2:
                 try:
-                    messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
+                    messageStr = message.content.replace("<@437414611369721856>", "{message.author.name} says:")
                     start = time.time()
                     async with message.channel.typing():
                         loop = asyncio.get_event_loop()
@@ -78,7 +78,7 @@ class MyClient(discord.Client):
 
             elif testmode == 1:
                 try:
-                    messageStr = message.content.replace("<@437414611369721856>", f"{message.author.name} says:")
+                    messageStr = f"{message.author.name} says:" + message.content.replace("<@437414611369721856>", "")
                     messageEncoded = tkn.encode(s=messageStr, eos=False, bos=False)
                     await replyMsg(
                         messageStr,
