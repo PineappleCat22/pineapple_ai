@@ -23,14 +23,22 @@ class MyClient(discord.Client):
     try:
         async def on_ready(self):
             #technically you shouldnt do any of this here
-            def query_ai_for_status():
-                return model.query("Describe what you are doing in ten words or less.", modelName)
-            loop = asyncio.get_event_loop()
-            status_message = await loop.run_in_executor(executor, query_ai_for_status)
-            await self.change_presence(status=discord.Status.idle, activity=discord.CustomActivity(status_message))
-
+            async def set_status():
+                i = 1
+                while True: #so fucking cringe...
+                    def query_ai_for_status(): # DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE DEFS INSIDE ...
+                        #return model.query("Describe what you are doing in ten words or less.", modelName)
+                        return "balls"
+                    loop = asyncio.get_event_loop()
+                    status_message = await loop.run_in_executor(executor, query_ai_for_status)
+                    await self.change_presence(status=discord.Status.idle, activity=discord.CustomActivity(status_message))
+                    await asyncio.sleep(60)
+                    print(f"status changed {i} times")
+                    i += 1
+            asyncio.run(set_status()) #this is fucking goofy.
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
+
     except Exception as e:
         print("Something went horribly wrong while initializing.")
         print(e)
