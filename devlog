@@ -150,3 +150,5 @@ TECHNICALLY a temperature of 50 shouldnt be logical, but it seems to work for no
 whatever.
 
 added testmode 2 so i can view ai response time.
+
+note to self: write exit condition.
