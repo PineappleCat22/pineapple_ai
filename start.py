@@ -28,6 +28,9 @@ class MyClient(discord.Client):
             loop = asyncio.get_event_loop()
             status_message = await loop.run_in_executor(executor, query_ai_for_status)
             await self.change_presence(status=discord.Status.idle, activity=discord.CustomActivity(status_message))
+            while True: # bad
+                time.sleep(3600)
+                await self.change_presence(status=discord.Status.idle, activity=discord.CustomActivity(status_message))
 
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
