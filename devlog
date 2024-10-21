@@ -172,3 +172,10 @@ class MyClient(discord.Client):
             asyncio.run(set_status()) #this is fucking goofy.
             print(f'{self.user} initialized successfully')
             print("test mode:", testmode)
+
+been busy with college. gonna write a quick wishlist to work on later when i have more time
+1.) rewrite system prompt and omit hobbies
+2.) finally get around to training (maybe impossible)
+3.) FINALLY get status updates working. totally forgot what was wrong with the old code. maybe i just need to try again?
+4.) turn the damn thing back on
+5.) get remote access working
