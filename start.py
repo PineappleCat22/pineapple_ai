@@ -24,6 +24,7 @@ class MyClient(discord.Client):
         async def on_ready(self):
             #technically you shouldnt do any of this here
             def query_ai_for_status():
+                print("querying for status...")
                 return model.query("Describe what you are doing in ten words or less.", modelName)
             loop = asyncio.get_event_loop()
             status_message = await loop.run_in_executor(executor, query_ai_for_status)
