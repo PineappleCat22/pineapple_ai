@@ -17,7 +17,7 @@ testmode = 2
 executor = ThreadPoolExecutor()
 intents = discord.Intents.default()
 intents.message_content = True
-modelName = "pineapple-ai-v1.4"
+modelName = "pineapple-ai-v1.5"
 
 class MyClient(discord.Client):
     try:
