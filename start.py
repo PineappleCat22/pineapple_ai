@@ -41,7 +41,7 @@ class MyClient(discord.Client):
         async def sendMsg(*msgs):
             for msg in msgs:
                 msg = str(msg)
-                if len(msg) > 2000:
+                if len(msg) > 2000: # TODO: unify all error messages under one method
                     await message.channel.send(f"aw fuck something went wrong while sending a message.\n<@189034549789851648> HEY SHITHEAD SOMETHING IS FUCKED.\nmessage send error: message longer than 2000 chars\ntime: {datetime.now()}")
                     print("======================================== THIS IS WHERE THE MESSAGE SEND ERROR OCCURRED =========================")
                     print(f"message: {msg}\n length: {len(msg)}\n time: {datetime.now()}")
@@ -117,3 +117,6 @@ client.run(TOKEN)
 #TODO: tell it to omit unnecessary details.
 #TODO: tell it the distinction between asexual and aromantic?
 #TODO: ai gets repetetive sometimes?
+#TODO: FIGURE OUT WHAT ALL THIS FUCKING ASYNC MEANS
+#TODO: let it take "notes" that persist through reboots
+#TODO: figure out what more features i can add to make it more "autonomous" and "human".
